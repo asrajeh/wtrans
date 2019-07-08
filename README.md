@@ -5,7 +5,7 @@ To support efficient, careful and consistent transcription, we developed a web b
 
 ## 2. Tool Overview
 This section gives a very brief introduction to the tool design and layout.
-![alt text](wTrans-Screenshot.png)
+![alt text](../images/wTrans-Screenshot.png)
 
 **(1) The Audio Panel**
 This region includes the waveform display and audio control buttons (left to right) forward skip (1 sec ), play/ pause and backward skip (1 sec), on the upper right corner there is a help button to inform the user how to select a segment and starts transcription [figure 2].
