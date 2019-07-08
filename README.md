@@ -103,7 +103,7 @@ Removes highlight from segment’s transcription.
 **$('#fullscript-table').on('change', 'select', function ())**
 Fires when the user change the speaker of the selected segment.
 
-** $('#fullscript-table').on('focus', '.editable-td', function ()) 
+**$('#fullscript-table').on('focus', '.editable-td', function ())** 
 Fires when the user select/click on some transcription field to edit or write a transcript.
 
 **window.onkeydown = function (e)**
