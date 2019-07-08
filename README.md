@@ -80,7 +80,7 @@ defaultB: Random color for the unassigned regions.
 before: To compare the stored transcription with the newly entered one to detect change.
 
 ## Event Listeners 
-**wavesurfer.on('ready', function ())** 
+```wavesurfer.on('ready', function ())``` 
 Fires when wavesurfer.js load the file and display the waveform image.
  
 
