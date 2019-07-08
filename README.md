@@ -84,54 +84,54 @@ before: To compare the stored transcription with the newly entered one to detect
 Fires when wavesurfer.js load the file and display the waveform image.
  
 
-**wavesurfer.on('region-created', function (region, event))**
+```wavesurfer.on('region-created', function (region, event))```
 Fires when the user finish dragging the segment and when the user undo deleting the segment.
 
-**wavesurfer.on('region-click', displayRegionInfo)**
+```wavesurfer.on('region-click', displayRegionInfo)```
 Fires when the mouse click on the region, the information of the segment are retrieved and displayed such as, the subtitle above the waveform and highlight its transcription.
 
-**wavesurfer.on('region-in', function (region, e))**
+```wavesurfer.on('region-in', function (region, e))```
 Fires when playback enters the region, the information of the segment are retrieved and displayed such as, the subtitle above the waveform and highlight its transcription.
 It also calls the keyboardShortcuts(event, region) function in case the user use and keyboard shortcut.
 
 
-**wavesurfer.on('region-out', function (region)**
+```wavesurfer.on('region-out', function (region)```
 Fires when playback leaves the region.
 Removes visibility of speaker’s transcription that appears on top of the wave.
 Removes highlight from segment’s transcription.
 
-**$('#fullscript-table').on('change', 'select', function ())**
+```$('#fullscript-table').on('change', 'select', function ())```
 Fires when the user change the speaker of the selected segment.
 
-**$('#fullscript-table').on('focus', '.editable-td', function ())** 
+```$('#fullscript-table').on('focus', '.editable-td', function ())```
 Fires when the user select/click on some transcription field to edit or write a transcript.
 
-**window.onkeydown = function (e)**
+```window.onkeydown = function (e)```
 Fired when the user uses one of the general keyboard shortcuts, such as play/pause, undo, jump to the next/previous segment, forward or backward by 1 second.
 
-**$('#help').click(function (){})**
+```$('#help').click(function (){})```
 Fired when the user clicks on the button, an informing alert appears.
 
-**$('#plus').click(function (){})**
+```$('#plus').click(function (){})```
 Fires when the user clicks on the plus button in the speakers panel to add a new speaker.
 
-**$('#speakers_panel').on('click', '.edit-speaker', function ())**
+```$('#speakers_panel').on('click', '.edit-speaker', function ())```
 Fires when the user clicks on the pen icon to edit speaker's name.
 
-**$('#speakers-panel').on('click', '.delete-speaker', function () {})**
+```$('#speakers-panel').on('click', '.delete-speaker', function () {})```
 Fires when the user clicks on the bin icon to delete the speaker.
 
 
 
 ## Functions
 
-**displayRegionInfo(region)**
+```displayRegionInfo(region)```
 Retrieves region's attributes (speaker,color and data) then displays them in their places.
 
-**generateID()** 
+```generateID()``` 
 Increments the ID counter 
 
-**keyboardShortcuts(e, region)**
+```keyboardShortcuts(e, region)```
 This function is called in these events: region-in, region-click and region-created. They send the current region along with the keyboard event.
 
 
