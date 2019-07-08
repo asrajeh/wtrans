@@ -135,7 +135,7 @@ Increments the ID counter
 This function is called in these events: region-in, region-click and region-created. They send the current region along with the keyboard event.
 
 
-##Useful tools
+## Useful tools
 
 **WaveSurfer library**
 https://wavesurfer-js.org/
