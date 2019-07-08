@@ -23,9 +23,9 @@ This region shows two columns. The first one is the transcribed text, the second
 This region displays the speakers list and a plus button to add more speakers and pen icon to change the speaker’s name.
 
 ## 3. Getting Started
-** 3.1 ** Audio File is already uploaded in the code (for future work it’s better if we can upload it while using the app).
+**3.1** Audio File is already uploaded in the code (for future work it’s better if we can upload it while using the app).
 
-** 3.2 ** Open Transcript File (Future work).
+**3.2** Open Transcript File (Future work).
 
 ## 4. Audio Segmentation
  The first stage of transcription is segmentation, which refers to the process of virtually chopping a long audio file into smaller meaningful units. Segmentation can be done with the mouse only (future work is adding shortcut for it). 
@@ -37,9 +37,9 @@ This region displays the speakers list and a plus button to add more speakers an
  [Figure 3]. Edit speaker’s name
 
  ## 6. Transcription
- The basic transcription process involves typing the words that correspond to an existing segment. Recall that the transcript and waveform display are linked in that you can click on a segment in the waveform and wTrans will find that segment in the transcript.
+The basic transcription process involves typing the words that correspond to an existing segment. Recall that the transcript and waveform display are linked in that you can click on a segment in the waveform and wTrans will find that segment in the transcript.
  
- ** 6.1 ** Language Input Functions By design, wTrans supports only English.
+ **6.1** Language Input Functions By design, wTrans supports only English.
  
  ## 7. Shortcuts
 - Ctrl+z  for undo deletion.
@@ -52,22 +52,20 @@ This region displays the speakers list and a plus button to add more speakers an
 
 
 ## HTML
-** Library used 
-** jQuery ** 
+**Library used** 
+**jQuery** 
 JavaScript library designed to simplify HTML DOM tree traversal and manipulation.
 
-**  Font Awesome ** 
+**Font Awesome** 
 Font and icon toolkit based on css and less.
 
-**  Wavesurfer ** 
+**Wavesurfer** 
 Customizable audio waveform visualization, built on top of web audio API and HTML5 
 Canvas.
 
-
-**  Sweetalert ** 
+**Sweetalert** 
 JavaScript library that provides a replacement for standard alert() dialogue.
 
-**  Bootstrap ** 
 
 ## JavaScript
 ## Global variables 
@@ -82,71 +80,71 @@ defaultB: Random color for the unassigned regions.
 before: To compare the stored transcription with the newly entered one to detect change.
 
 ## Event Listeners 
-** wavesurfer.on('ready', function ()) 
+**wavesurfer.on('ready', function ())** 
 Fires when wavesurfer.js load the file and display the waveform image.
  
 
-** wavesurfer.on('region-created', function (region, event))
+**wavesurfer.on('region-created', function (region, event))**
 Fires when the user finish dragging the segment and when the user undo deleting the segment.
 
-** wavesurfer.on('region-click', displayRegionInfo)
+**wavesurfer.on('region-click', displayRegionInfo)**
 Fires when the mouse click on the region, the information of the segment are retrieved and displayed such as, the subtitle above the waveform and highlight its transcription.
 
-**wavesurfer.on('region-in', function (region, e))
+**wavesurfer.on('region-in', function (region, e))**
 Fires when playback enters the region, the information of the segment are retrieved and displayed such as, the subtitle above the waveform and highlight its transcription.
 It also calls the keyboardShortcuts(event, region) function in case the user use and keyboard shortcut.
 
 
-** wavesurfer.on('region-out', function (region)
+**wavesurfer.on('region-out', function (region)**
 Fires when playback leaves the region.
 Removes visibility of speaker’s transcription that appears on top of the wave.
 Removes highlight from segment’s transcription.
 
-** $('#fullscript-table').on('change', 'select', function ())
+**$('#fullscript-table').on('change', 'select', function ())**
 Fires when the user change the speaker of the selected segment.
 
 ** $('#fullscript-table').on('focus', '.editable-td', function ()) 
 Fires when the user select/click on some transcription field to edit or write a transcript.
 
-** window.onkeydown = function (e)
+**window.onkeydown = function (e)**
 Fired when the user uses one of the general keyboard shortcuts, such as play/pause, undo, jump to the next/previous segment, forward or backward by 1 second.
 
-** $('#help').click(function (){})
+**$('#help').click(function (){})**
 Fired when the user clicks on the button, an informing alert appears.
 
-** $('#plus').click(function (){})
+**$('#plus').click(function (){})**
 Fires when the user clicks on the plus button in the speakers panel to add a new speaker.
 
-** $('#speakers_panel').on('click', '.edit-speaker', function ())
+**$('#speakers_panel').on('click', '.edit-speaker', function ())**
 Fires when the user clicks on the pen icon to edit speaker's name.
 
-** $('#speakers-panel').on('click', '.delete-speaker', function () {})
+**$('#speakers-panel').on('click', '.delete-speaker', function () {})**
 Fires when the user clicks on the bin icon to delete the speaker.
 
 
 
 ## Functions
 
-** displayRegionInfo(region) 
+**displayRegionInfo(region)**
 Retrieves region's attributes (speaker,color and data) then displays them in their places.
 
-** generateID() 
+**generateID()** 
 Increments the ID counter 
 
-** keyboardShortcuts(e, region)
+**keyboardShortcuts(e, region)**
 This function is called in these events: region-in, region-click and region-created. They send the current region along with the keyboard event.
 
 
-## Useful tools
+##Useful tools
 
-** WaveSurfer library
+**WaveSurfer library**
 https://wavesurfer-js.org/
 
-** Sweetalert library
+**Sweetalert library**
 https://sweetalert.js.org/
 
-** Fontawesome library
+**Fontawesome library**
 https://fontawesome.com/
 
-** xTrans Transcription tool user manual
+**xTrans Transcription tool user manual**
 https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/xtrans-manual-v3.0.pdf
