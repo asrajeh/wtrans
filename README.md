@@ -85,7 +85,7 @@ Fires when wavesurfer.js load the file and display the waveform image.
  
 
 ```wavesurfer.on('region-created', function (region, event))```
-Fires when the user finish dragging the segment and when the user undo deleting the segment.
+Fires when the user starts dragging the segment and when the user undo deleting the segment.
 
 ```wavesurfer.on('region-click', displayRegionInfo)```
 Fires when the mouse click on the region, the information of the segment are retrieved and displayed such as, the subtitle above the waveform and highlight its transcription.
@@ -134,6 +134,8 @@ Increments the ID counter
 ```keyboardShortcuts(e, region)```
 This function is called in these events: region-in, region-click and region-created. They send the current region along with the keyboard event.
 
+```function appendTranscription(region)```
+This function is called upon creating or recreating (when user undo deletion) to append the transcription row of the region.
 
 ## Useful tools
 
