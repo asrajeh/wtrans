@@ -41,14 +41,16 @@ The basic transcription process involves typing the words that correspond to an 
  
  **6.1** Language Input Functions By design, wTrans supports only English.
  
+ **6.2** wTrans supports transcription in all languages.
+ 
  ## 7. Shortcuts
-- Ctrl+z  for undo deletion.
-- Backspace delete segment
-- Space play/pause.
-- Right arrow forward skip (1 sec).
-- Left arrow backward skip (1 sec).
-- Ctrl+h move to next segment.
-- Ctrl+b move to previous segment. 
+- Ctrl+z  for undo deletion (Win). | Cmd+z for undo deletion (Mac). 
+- Shift+Backspace delete segment.
+- Shift+Space play/pause.
+- Shift+Right arrow forward skip (1 sec).
+- Shift+Left arrow backward skip (1 sec).
+- Shift+h move to next segment.
+- Shift+b move to previous segment. 
 
 
 ## HTML
