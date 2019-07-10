@@ -3,7 +3,7 @@
 	overflow: hidden;
 }
 
-/****WAVE AREA****/
+/****HEADER****/
 
 #page-header {
 	background-color: #d1d1d1;
@@ -13,6 +13,13 @@
 	font-size: 25px;
 }
 
+#title {
+	font-family: 'Raleway', sans-serif;
+	color: white;
+	text-align: center;
+}
+
+/****REST OF THE PAGE****/
 #page-content {
 	display: flex;
 	width: 100%;
@@ -21,13 +28,20 @@
 	margin-top: 20px;
 }
 
-
-#title {
-	font-family: 'Raleway', sans-serif;
-	color: white;
-	text-align: center;
+#left-side {
+	width: 82.5%;
 }
 
+#right-side {
+	display: table;
+	width: 15%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/****LEFT SIDE****/
+
+/****WAVE AREA****/
 #segement-continer {
 	display: table;
 	margin-left: auto;
@@ -159,6 +173,11 @@ td {
 	width: 10%;
 }
 
+select {
+	padding: 6px;
+	-webkit-appearance: none;
+}
+
 .editableTranscript {
 	text-align: left;
 	width: auto;
@@ -203,19 +222,7 @@ td {
 }
 
 
-/****BOTTOM AREA****/
-
-
-#left-side {
-	width: 82.5%;
-}
-
-#right-side {
-	display: table;
-	width: 15%;
-	margin-left: auto;
-	margin-right: auto;
-}
+/****RIGHT SIDE****/
 
 #SC-SpeakersList {
 	position: relative;
@@ -239,11 +246,6 @@ td {
 .fa-pen {
 	font-size: 12px;
 	color: #3486d6;
-}
-
-select {
-	padding: 6px;
-	-webkit-appearance: none;
 }
 
 #add-delete {
