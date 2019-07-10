@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	
+
 <head>
 	<title>Transcription tool</title>
 	<meta charset="utf-8">
@@ -51,92 +51,96 @@
 
 <body>
 
+	<div id="page-header">
+		<p id="title"><b>wTrans</b> Web based transcription tool</p>
+	</div>
 
-	<h1 id="title"><b>wTrans</b></h1>
-	<h4 id="description">Web based transcription tool</h4>
+	<div id="page-content">
+		<div id="left-side">
+			<div id="top-div">
+				<div id="segement-continer">
+					<div id="current-speaker">
+						<p id="sub-speaker" class="speaker-id"></p>
+						<p id="sub-transcript"></p>
+					</div>
+				</div>
 
-	<div id="top-div">
-		<div id="segement-continer">
-			<div id="current-speaker">
-				<p id="sub-speaker" class="speaker-id"></p>
-				<p id="sub-transcript"></p>
+				<div id="wave-container">
+					<a id="help">Help&nbsp;<i class="fas fa-question"></i></a>
+					<div id="waveform"></div>
+					<div id="waveform-timeline"></div>
+				</div>
+
+				<div id="buttons-div">
+					<button class="btn btn-primary" id="button-bkwrd" title="Go backward 1 sec.">
+						<i class="fas fa-backward"></i>
+
+					</button>
+
+					<button class="btn btn-primary" id="button" data-action="play" title="Play/Pause">
+						<i class="fas fa-play"></i>
+						/
+						<i class="fas fa-pause"></i>
+
+					</button>
+
+
+
+					<button class="btn btn-primary" id="button-frwrd" title="Go forward 1 sec.">
+						<i class="fas fa-forward"></i>
+					</button>
+
+				</div>
+			</div>
+			<div id="fullscript-area">
+
+
+				<table id="fullscript-table">
+					<p class="default-text">There's no transcription yet, select a segment to transcript</p>
+				</table>
+
 			</div>
 		</div>
 
-		<div id="wave-container">
-			<a id="help">Help&nbsp;<i class="fas fa-question"></i></a>
-			<div id="waveform"></div>
-			<div id="waveform-timeline"></div>
-		</div>
 
-		<div id="buttons-div">
-			<button class="btn btn-primary" id="button-bkwrd" title="Go backward 1 sec.">
-				<i class="fas fa-backward"></i>
-
-			</button>
-
-			<button class="btn btn-primary" id="button" data-action="play" title="Play/Pause">
-				<i class="fas fa-play"></i>
-				/
-				<i class="fas fa-pause"></i>
-
-			</button>
+		<div id="right-side">
 
 
 
-			<button class="btn btn-primary" id="button-frwrd" title="Go forward 1 sec.">
-				<i class="fas fa-forward"></i>
-			</button>
+			<div id="SC-SpeakersList">
 
-		</div>
-	</div>
+				<div id="speakersList">
+					<div id="add-delete"><i id="plus" class="fas fa-plus"></i> </div>
+					<h4>Speakers list</h4>
+					<label id="speakers-panel">
+
+					</label>
+				</div>
+
+				<div id="shortcuts">
+
+					<button disabled id="VOS" type="button" class="btn btn-secondary" title="View only selected speakers segments">VOS</button>
+
+					<button disabled id="VAS" type="button" class="btn btn-secondary" title="View speakers segments">VAS</button>
+
+					<button disabled id="SRT" type="button" class="btn btn-secondary" title="Toggle speaker sorting method (alphabetical)">SRT</button>
+
+					<button disabled id="NSI" type="button" class="btn btn-secondary" title="Assign new speaker ID for a single segment">NSI</button>
+
+					<button id="EDIg" type="button" class="btn btn-secondary" title="Edit speaker information of all segments of selected speaker">ESIg</button>
+
+					<button disabled id="MRG" type="button" class="btn btn-secondary" title="Merge current segment into another speaker">MRG</button>
+
+					<button disabled id="MRGg" type="button" class="btn btn-secondary" title="Merge all segments of selected speaker into another speaker">MRGg</button>
+
+					<button disabled id="LRS" type="button" class="btn btn-secondary" title="Listen random segments of selected speaker">LRS</button>
+
+					<button disabled id="LAS" type="button" class="btn btn-secondary" title="Listen all segments of selected speaker">LAS</button>
+
+					<button id="LAG" type="button" class="btn btn-secondary" title="Listen all gaps">LAG</button>
 
 
-	<div id="fullscript-area">
-
-
-		<table id="fullscript-table">
-			<p class="default-text">There's no transcription yet, select a segment to transcript</p>
-		</table>
-
-	</div>
-
-	<div id="bottom-div">
-
-
-
-		<div id="SC-SpeakersList">
-
-			<div id="speakersList">
-				<div id="add-delete"><i id="plus" class="fas fa-plus"></i> </div>
-				<h4>Speakers list</h4>
-				<label id="speakers-panel">
-
-				</label>
-			</div>
-
-			<div id="shortcuts">
-
-				<button disabled id="VOS" type="button" class="btn btn-secondary" title="View only selected speakers segments">VOS</button>
-
-				<button disabled id="VAS" type="button" class="btn btn-secondary" title="View speakers segments">VAS</button>
-
-				<button disabled id="SRT" type="button" class="btn btn-secondary" title="Toggle speaker sorting method (alphabetical)">SRT</button>
-
-				<button disabled id="NSI" type="button" class="btn btn-secondary" title="Assign new speaker ID for a single segment">NSI</button>
-
-				<button id="EDIg" type="button" class="btn btn-secondary" title="Edit speaker information of all segments of selected speaker">ESIg</button>
-
-				<button disabled id="MRG" type="button" class="btn btn-secondary" title="Merge current segment into another speaker">MRG</button>
-
-				<button disabled id="MRGg" type="button" class="btn btn-secondary" title="Merge all segments of selected speaker into another speaker">MRGg</button>
-
-				<button disabled id="LRS" type="button" class="btn btn-secondary" title="Listen random segments of selected speaker">LRS</button>
-
-				<button disabled id="LAS" type="button" class="btn btn-secondary" title="Listen all segments of selected speaker">LAS</button>
-
-				<button id="LAG" type="button" class="btn btn-secondary" title="Listen all gaps">LAG</button>
-
+				</div>
 
 			</div>
 
@@ -147,6 +151,6 @@
 
 
 
+</body>
 
-
-</body></html>
+</html>
