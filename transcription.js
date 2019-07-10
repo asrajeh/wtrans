@@ -94,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		// Play region 
 		wavesurfer.on('region-click', function (region, e) {
+
+
 			e.stopPropagation();
 			// Play on click, loop on shift click
 			e.shiftKey ? region.playLoop() : region.play();
@@ -108,7 +110,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 
 	});
-
+	// STEPS OF ROWS
+	//row object
+	//row's id 
+	// wavesurfer[id]
+	//start 
 	// Event Listener: upon clicking on a region, display its info	
 	wavesurfer.on('region-click', displayRegionInfo);
 
@@ -134,46 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			region.speaker = currentSpeaker;
 		}
 
-		// Retrieve the region's transcription if there's any.
-		var editableTranscript = "Type the transcript here";
-		if (!jQuery.isEmptyObject(region.data)) {
-			editableTranscript = region.data;
-		}
-
-		// Add table row to enable transcription
-		$('.default-text').css("display", "none");
-		$('#fullscript-table').append('<tr id="' + region.id + '_row"> <td class="speakers-dropdown"><select id="' + region.id + '_speakers"><option value="reset"  disabled selected>Choose a speaker ↓</option></select> </td> <td class="editable-td" id="' + region.id + '" contentEditable="true">' + editableTranscript + '</td> </tr>');
-
-		// Fill the speakers dropdown list with the speakers.
-		for (var key in speakers.speakers) {
-			var speakerId = speakers.speakers[key].id;
-			var speakerName = speakers.speakers[key].name;
-			var speakerColor = 'rgba(' +
-				speakers.speakers[key].r +
-				',' +
-				speakers.speakers[key].g +
-				',' +
-				speakers.speakers[key].b +
-				',0.15)';
-
-			$('#' + region.id + '_speakers').append('<option value="' + speakerId + '" data-color="' +
-				speakerColor +
-				'">' +
-				speakerName +
-				'</option>');
-		}
-
-		// Set the latest selected speaker as the default one.
-		if (currentSpeaker != -1) {
-			region.color = 'rgba(' +
-				speakers.speakers[currentSpeaker].r +
-				',' +
-				speakers.speakers[currentSpeaker].g +
-				',' +
-				speakers.speakers[currentSpeaker].b +
-				',0.15)';
-			$('#' + region.id + '_speakers option[value="' + currentSpeaker + '"]').attr("selected", "selected");
-		}
 
 		// Event Listener: Keyboard shortcuts.
 		window.onkeyup = function (event) {
@@ -181,6 +147,82 @@ document.addEventListener('DOMContentLoaded', function () {
 		};
 
 	});
+
+	wavesurfer.on('region-update-end', function (region, event) {
+		// Append a new transcription row only if the region doesn't have one.
+		if (Object.keys(wavesurfer.regions.list).length > $('#fullscript-table tr').length) {
+
+			// Retrieve the region's transcription if there's any.
+			var editableTranscript = "Type the transcript here";
+			if (!jQuery.isEmptyObject(region.data)) {
+				editableTranscript = region.data;
+			}
+
+			// Add table row to enable transcription
+			$('.default-text').css("display", "none");
+			var added = false;
+			var newRow = '<tr id="' +
+				region.id + '_row"> <td class="speakers-dropdown"><select id="' +
+				region.id + '_speakers"><option value="reset"  disabled selected>Choose a speaker ↓</option></select> </td>' +
+				'<td class="seconds" id="' +
+				region.id + '_seconds">' +
+				region.start.toFixed(2) + ' - ' + region.end.toFixed(2) + '</td>' +
+				'<td class="editable-td" id="' +
+				region.id + '" contentEditable="true">' +
+				editableTranscript + '</td> </tr>';
+
+			// Append the transcription row in the right place	
+			if ($('#fullscript-table tr').length > 0) {
+				$('#fullscript-table tr').each(function () {
+					if (region.end < $(this).find("td:nth-child(2)").html().substring(0, $(this).find("td:nth-child(2)").html().indexOf(' ')) && !added) {
+						$(newRow).insertBefore($(this));
+						added = true;
+					}
+
+				});
+
+			}
+
+			// if the region has the latest seconds, append at the last position.
+			if (!added) {
+				$('#fullscript-table').append(newRow);
+				added = false;
+			}
+
+
+			// Fill the speakers dropdown list with the speakers.
+			for (var key in speakers.speakers) {
+				var speakerId = speakers.speakers[key].id;
+				var speakerName = speakers.speakers[key].name;
+				var speakerColor = 'rgba(' +
+					speakers.speakers[key].r +
+					',' +
+					speakers.speakers[key].g +
+					',' +
+					speakers.speakers[key].b +
+					',0.15)';
+
+				$('#' + region.id + '_speakers').append('<option value="' + speakerId + '" data-color="' +
+					speakerColor +
+					'">' +
+					speakerName +
+					'</option>');
+			}
+
+			// Set the latest selected speaker as the default one.
+			if (currentSpeaker != -1) {
+				region.color = 'rgba(' +
+					speakers.speakers[currentSpeaker].r +
+					',' +
+					speakers.speakers[currentSpeaker].g +
+					',' +
+					speakers.speakers[currentSpeaker].b +
+					',0.15)';
+				$('#' + region.id + '_speakers option[value="' + currentSpeaker + '"]').attr("selected", "selected");
+			}
+		}
+
+	})
 
 	// Event Listener: when the cursor enters the region		
 	wavesurfer.on('region-in', function (region, e) {
@@ -223,9 +265,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Event Listener: upon writing in the transcription area 
 	$('#fullscript-table').on('focus', '.editable-td', function () {
-			before = $(this).html();
+			$(this).parent().css("background", "#e6e6e6");
+			if ($(this).html() == "Type the transcript here")
+				$(this).html("");
+			else before = $(this).html();
+			var playRegion;
+			playRegion = $(this).attr('id');
+			wavesurfer.play(wavesurfer.regions.list[playRegion].start);
 		})
 		.on('blur keyup paste', '.editable-td', function () {
+			if ($(this).html() == "") {
+				$(this).html("Type the transcript here");
+				before = "Type the transcript here";
+			}
 			if (before != $(this).html()) {
 				wavesurfer.regions.list[$(this).attr('id')].update({
 					data: $(this).html()
@@ -238,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	window.onkeydown = function (e) {
 
 
-		if (e.which == 90 && e.ctrlKey) {
+		if (e.which == 90 && e.ctrlKey) { //ctrl+z undo action
 			e.preventDefault();
 			if (undoArray.length != 0) {
 				wavesurfer.addRegion(undoArray.pop());
@@ -246,17 +298,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 
-		if (e.metaKey && e.key === 'z') {
+		if (e.metaKey && e.key === 'z') { //cmd+z undo action
 			e.preventDefault();
 			if (undoArray.length != 0) {
 				wavesurfer.addRegion(undoArray.pop());
 			}
-		} else if (e.which == 72 && e.shiftKey) { //ctr+h for next segment
+		} else if (e.which == 72 && e.shiftKey) { //shift+h for next segment
 			var currentPosition = wavesurfer.getCurrentTime();
 
 			for (var key in wavesurfer.regions.list) {
 				if (wavesurfer.regions.list[key].start > currentPosition) {
-					//alert(wavesurfer.regions.list[key].start );
 					wavesurfer.play(wavesurfer.regions.list[key].start);
 					break;
 				}
@@ -264,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 
 
-		} else if (e.which == 66 && e.shiftKey) { // ctr+b for previous segment 
+		} else if (e.which == 66 && e.shiftKey) { // shift+b for previous segment 
 			var currentPosition = wavesurfer.getCurrentTime();
 
 
@@ -282,17 +333,19 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (i >= 1)
 				wavesurfer.play(regionsCopy[i - 1].start);
 
-		} else if (e.which == 39 && !($('.editable-td').is(":focus")) && !($('input').is(":focus"))) {
+		} else if (e.which == 39 && e.shiftKey) { //shift + right arrow for forward skip 1 sec action 
 			// Forward by 1 sec.
 			wavesurfer.skipForward(1);
-		} else if (e.which == 37 && !($('.editable-td').is(":focus")) && !($('input').is(":focus"))) {
+		} else if (e.which == 37 && e.shiftKey) { //shift + right arrow for backward skip 1 sec action 
 			// Backward by 1 sec.
 			wavesurfer.skipBackward(1);
-		} else if (e.which == 32 && !($('.editable-td').is(":focus")) && !($('input').is(":focus"))) {
+		} else if (e.shiftKey && e.which == 32) { //shift + space for play\pause action 
 			wavesurfer.playPause();
+
 		}
 
 	};
+
 
 	// Event Listener: Alert help message
 	$('#help').click(function () {
@@ -337,12 +390,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		for (var key in speakers.speakers) {
 
 			if (speakers.speakers[key].id == speakerId) {
-				speakers.speakers.splice(key);
+				speakers.speakers.splice(key, 1);
+				break;
 			}
 			console.log(Object.values(speakers.speakers));
 		}
 		$('select option[value="' + speakerId + '"]').remove();
-
+		console.log(Object.values(speakers.speakers));
 	});
 
 
@@ -492,6 +546,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	   };
 
 	*/
+
 
 
 
