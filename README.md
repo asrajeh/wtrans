@@ -134,7 +134,7 @@ Increments the ID counter
 ```keyboardShortcuts(e, region)```
 This function is called in these events: region-in, region-click and region-created. They send the current region along with the keyboard event.
 
-```function appendTranscription(region)```
+```appendTranscription(region)```
 This function is called upon creating or recreating (when user undo deletion) to append the transcription row of the region.
 
 ## Useful tools
