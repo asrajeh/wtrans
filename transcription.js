@@ -110,17 +110,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 
 	});
-	// STEPS OF ROWS
-	//row object
-	//row's id 
-	// wavesurfer[id]
-	//start 
+
 	// Event Listener: upon clicking on a region, display its info	
 	wavesurfer.on('region-click', displayRegionInfo);
 
 	// Event Listener: upon draging a region, create it	
 	wavesurfer.on('region-created', function (region, event) {
-
 		// Add a bin icon on the region
 		if (!region.hasDeleteButton) {
 			var regionEl = region.element;
@@ -140,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			region.speaker = currentSpeaker;
 		}
 
-
 		// Event Listener: Keyboard shortcuts.
 		window.onkeyup = function (event) {
 			keyboardShortcuts(event, region);
@@ -151,75 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	wavesurfer.on('region-update-end', function (region, event) {
 		// Append a new transcription row only if the region doesn't have one.
 		if (Object.keys(wavesurfer.regions.list).length > $('#fullscript-table tr').length) {
-
-			// Retrieve the region's transcription if there's any.
-			var editableTranscript = "Type the transcript here";
-			if (!jQuery.isEmptyObject(region.data)) {
-				editableTranscript = region.data;
-			}
-
-			// Add table row to enable transcription
-			$('.default-text').css("display", "none");
-			var added = false;
-			var newRow = '<tr id="' +
-				region.id + '_row"> <td class="speakers-dropdown"><select id="' +
-				region.id + '_speakers"><option value="reset"  disabled selected>Choose a speaker ↓</option></select> </td>' +
-				'<td class="seconds" id="' +
-				region.id + '_seconds">' +
-				region.start.toFixed(2) + ' - ' + region.end.toFixed(2) + '</td>' +
-				'<td class="editable-td" id="' +
-				region.id + '" contentEditable="true">' +
-				editableTranscript + '</td> </tr>';
-
-			// Append the transcription row in the right place	
-			if ($('#fullscript-table tr').length > 0) {
-				$('#fullscript-table tr').each(function () {
-					if (region.end < $(this).find("td:nth-child(2)").html().substring(0, $(this).find("td:nth-child(2)").html().indexOf(' ')) && !added) {
-						$(newRow).insertBefore($(this));
-						added = true;
-					}
-
-				});
-
-			}
-
-			// if the region has the latest seconds, append at the last position.
-			if (!added) {
-				$('#fullscript-table').append(newRow);
-				added = false;
-			}
-
-
-			// Fill the speakers dropdown list with the speakers.
-			for (var key in speakers.speakers) {
-				var speakerId = speakers.speakers[key].id;
-				var speakerName = speakers.speakers[key].name;
-				var speakerColor = 'rgba(' +
-					speakers.speakers[key].r +
-					',' +
-					speakers.speakers[key].g +
-					',' +
-					speakers.speakers[key].b +
-					',0.15)';
-
-				$('#' + region.id + '_speakers').append('<option value="' + speakerId + '" data-color="' +
-					speakerColor +
-					'">' +
-					speakerName +
-					'</option>');
-			}
-
-			// Set the latest selected speaker as the default one.
-			if (currentSpeaker != -1) {
-				region.color = 'rgba(' +
-					speakers.speakers[currentSpeaker].r +
-					',' +
-					speakers.speakers[currentSpeaker].g +
-					',' +
-					speakers.speakers[currentSpeaker].b +
-					',0.15)';
-				$('#' + region.id + '_speakers option[value="' + currentSpeaker + '"]').attr("selected", "selected");
-			}
+			appendTranscription(region);
 		}
 
 	})
@@ -293,7 +219,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (e.which == 90 && e.ctrlKey) { //ctrl+z undo action
 			e.preventDefault();
 			if (undoArray.length != 0) {
-				wavesurfer.addRegion(undoArray.pop());
+
+				var deletedRegion = undoArray.pop();
+				wavesurfer.addRegion(deletedRegion);
+				appendTranscription(deletedRegion);
 			}
 		}
 
@@ -301,8 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (e.metaKey && e.key === 'z') { //cmd+z undo action
 			e.preventDefault();
 			if (undoArray.length != 0) {
-				wavesurfer.addRegion(undoArray.pop());
+				var deletedRegion = undoArray.pop();
+				wavesurfer.addRegion(deletedRegion);
+				appendTranscription(deletedRegion);
 			}
+
 		} else if (e.which == 72 && e.shiftKey) { //shift+h for next segment
 			var currentPosition = wavesurfer.getCurrentTime();
 
@@ -346,11 +278,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	};
 
-
 	// Event Listener: Alert help message
 	$('#help').click(function () {
 		swal("Select a range of seconds to segment and transcript.");
 
+	});
+
+	// Event Listener: Export transcription as CSV file
+	$('#export').click(function () {
+		var html = document.querySelector("table").outerHTML;
+		export_table_to_csv(html, "transcription.csv");
 	});
 
 	// Event Listener: to edit speaker's name upon clicking on the pen
@@ -398,7 +335,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		$('select option[value="' + speakerId + '"]').remove();
 		console.log(Object.values(speakers.speakers));
 	});
-
 
 	// Event Listener: to add a new speaker.
 	$('#plus').click(function () {
@@ -485,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	function keyboardShortcuts(e, region) {
 
 
-		if (e.which == 8 && !($('.editable-td').is(":focus")) && !($('input').is(":focus"))) {
+		if (e.shiftKey && e.which == 8) {
 			undoArray.push(region);
 			region.remove();
 			$("#" + region.id + "_row").remove();
@@ -495,57 +431,133 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	}
 
+	// Function: Append a transcription row 
+	function appendTranscription(region) {
 
 
-	// Temporarily removed pieces of code	
+		// Retrieve the region's transcription if there's any.
+		var editableTranscript = "Type the transcript here";
+		if (!jQuery.isEmptyObject(region.data)) {
+			editableTranscript = region.data;
+		}
 
-	/*
-	*
-	*function EDIg button for editing speaker's information (this function onnly edits speaker's ID)
-	*
-	   document.getElementById('EDIg').addEventListener('click', function () {
-	       var isChecked = $('input[type="radio"]').is(':checked');
+		// Add table row to enable transcription
+		$('.default-text').css("display", "none");
+		var added = false;
+		var newRow = '<tr id="' +
+			region.id + '_row"> <td class="speakers-dropdown"><select id="' +
+			region.id + '_speakers"><option value="reset"  disabled selected>Choose a speaker ↓</option></select> </td>' +
+			'<td class="seconds" id="' +
+			region.id + '_seconds">' +
+			region.start.toFixed(2) + ' - ' + region.end.toFixed(2) + '</td>' +
+			'<td class="editable-td" id="' +
+			region.id + '" contentEditable="true">' +
+			editableTranscript + '</td> </tr>';
 
-	       if (!isChecked) {
-	           swal("Select a speaker to be edited");
-	           return;
+		// Append the transcription row in the right place	
+		if ($('#fullscript-table tr').length > 0) {
+			$('#fullscript-table tr').each(function () {
+				if (region.end < $(this).find("td:nth-child(2)").html().substring(0, $(this).find("td:nth-child(2)").html().indexOf(' ')) && !added) {
+					$(newRow).insertBefore($(this));
+					added = true;
+				}
 
-	       }
+			});
 
-	       swal("Write something here:", {
-	               content: "input",
-	           })
-	           .then((value) => {
-	               var checkedId = $("input[type='radio']:checked").attr("id");
-	               $("label[for='" + checkedId + "']").html(value);
+		}
 
-
-	           });
-
-	   });
-
-	*/
+		// if the region has the latest seconds, append at the last position.
+		if (!added) {
+			$('#fullscript-table').append(newRow);
+			added = false;
+		}
 
 
-	/*
-	*
-	*Function for VOS button to hilight all the segments for the chosen speaker.
+		// Fill the speakers dropdown list with the speakers.
+		for (var key in speakers.speakers) {
+			var speakerId = speakers.speakers[key].id;
+			var speakerName = speakers.speakers[key].name;
+			var speakerColor = 'rgba(' +
+				speakers.speakers[key].r +
+				',' +
+				speakers.speakers[key].g +
+				',' +
+				speakers.speakers[key].b +
+				',0.15)';
 
-	   document.getElementById('VOS').onclick = function () {
+			$('#' + region.id + '_speakers').append('<option value="' + speakerId + '" data-color="' +
+				speakerColor +
+				'">' +
+				speakerName +
+				'</option>');
+		}
 
-	       var checkedId = $("input[type='radio']:checked").attr("id");
-	       var table = document.getElementById('fullscript-table');
-	       for (var i = 0, row; row = table.rows[i]; i++) {
+		// Set the latest selected speaker as the default one.
+		if (currentSpeaker != -1) {
+			region.color = 'rgba(' +
+				speakers.speakers[currentSpeaker].r +
+				',' +
+				speakers.speakers[currentSpeaker].g +
+				',' +
+				speakers.speakers[currentSpeaker].b +
+				',0.15)';
+			$('#' + region.id + '_speakers option[value="' + currentSpeaker + '"]').attr("selected", "selected");
+		}
 
-	           if (row.cells[0].firstChild.getAttribute("data-id") == checkedId) {
-	               row.cells[1].className = "selected"
+	}
 
-	           }
-	       }
+	// Function: Prepare the CSV file 
+	function export_table_to_csv(html, filename) {
+		var csv = [];
+		$('#fullscript-table tr').each(function () {
 
-	   };
+			var row = []
+			var duration = $(this).find('td:eq(1)').text() + "";
+			var start = duration.substring(0, duration.indexOf(' '));
+			var end = duration.substring(duration.indexOf('-') + 1);
+			row.push($(this).find('td:eq(0)').find('option:selected').text());
+			row.push(start);
+			row.push(end);
+			row.push($(this).find('td:eq(2)').text());
+			csv.push(row.join(","));
+		});
 
-	*/
+
+
+		download_csv(csv.join("\n"), filename);
+
+	}
+
+
+	// Function: Download CSV
+	function download_csv(csv, filename) {
+		var csvFile;
+		var downloadLink;
+
+		// CSV FILE
+		csvFile = new Blob([csv], {
+			type: "text/csv"
+		});
+
+		// Download link
+		downloadLink = document.createElement("a");
+
+		// File name
+		downloadLink.download = filename;
+
+		// We have to create a link to the file
+		downloadLink.href = window.URL.createObjectURL(csvFile);
+
+		// Make sure that the link is not displayed
+		downloadLink.style.display = "none";
+
+		// Add the link to your DOM
+		document.body.appendChild(downloadLink);
+
+		// Lanzamos
+		downloadLink.click();
+	}
+
 
 
 
