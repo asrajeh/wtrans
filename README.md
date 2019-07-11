@@ -138,6 +138,7 @@ This function is called in these events: region-in, region-click and region-crea
 
 ```appendTranscription(region)```
 This function is called upon creating or recreating (when user undo deletion) to append the transcription row of the region.
+
 ```export_table_to_csv(html, filename)```
 This function fills the element CSV with transcription information.
 
