@@ -56,7 +56,7 @@ The basic transcription process involves typing the words that correspond to an 
 
 ## 8. Export file 
 You can export your transcription int CSV file easily by clicking Export as CSV button on the upper right corner of the page. 
-<img src="../master/images/exportCSV.png" width="1200px">
+<img src="../master/images/exportCSV.png" width="800px">
 
 ## HTML
 **Library used** 
@@ -137,7 +137,7 @@ Fires when the user clicks Export as CSV to download transcription table.
 Retrieves region's attributes (speaker,color and data) then displays them in their places.
 
 ```generateID()``` 
-Increments the ID counter 
+Increments the ID counter. 
 
 ```keyboardShortcuts(e, region)```
 This function is called in these events: region-in, region-click and region-created. They send the current region along with the keyboard event.
