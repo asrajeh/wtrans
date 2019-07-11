@@ -123,8 +123,8 @@ Fires when the user clicks on the pen icon to edit speaker's name.
 ```$('#speakers-panel').on('click', '.delete-speaker', function () {})```
 Fires when the user clicks on the bin icon to delete the speaker.
 
-
-
+```$('#export').click(function (){})```
+Fires when the user clicks Export as CSV to download transcription table. 
 ## Functions
 
 ```displayRegionInfo(region)```
@@ -138,6 +138,11 @@ This function is called in these events: region-in, region-click and region-crea
 
 ```appendTranscription(region)```
 This function is called upon creating or recreating (when user undo deletion) to append the transcription row of the region.
+```export_table_to_csv(html, filename)```
+This function fills the element CSV with transcription information.
+
+```download_csv(csv, filename)```
+This function takes CSV element and exports it into .csv file.
 
 ## Useful tools
 
