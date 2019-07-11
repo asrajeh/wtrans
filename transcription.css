@@ -6,7 +6,8 @@
 /****HEADER****/
 
 #page-header {
-	background-color: #d1d1d1;
+	background-color: #abbfd3;
+	display: flex;
 }
 
 #page-header b {
@@ -15,8 +16,31 @@
 
 #title {
 	font-family: 'Raleway', sans-serif;
-	color: white;
+	color: #ffffff;
 	text-align: center;
+	width: 90%;
+}
+
+#export {
+	float: right;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+	border-radius: 25px;
+	width: 10%;
+	line-height: 30px;
+	height: 30px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 10px;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#export:hover {
+	background-color: #ffffff;
+	color: #6b8eb1;
+	border-color: #e7ecf2;
 }
 
 /****REST OF THE PAGE****/
