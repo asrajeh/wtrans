@@ -28,15 +28,15 @@ This region displays the speakers list and a plus button to add more speakers an
 **3.2** Open Transcript File (Future work).
 
 ## 4. Audio Segmentation
- The first stage of transcription is segmentation, which refers to the process of virtually chopping a long audio file into smaller meaningful units. Segmentation can be done with the mouse only (future work is adding shortcut for it). 
+The first stage of transcription is segmentation, which refers to the process of virtually chopping a long audio file into smaller meaningful units. Segmentation can be done with the mouse only (future work is adding shortcut for it). 
  
- ## 5. Assign Speaker Information
- From the speakers panel you can add a speaker by clicking the plus button. Changing the speaker’s name is done by clicking on the pen icon next to the speaker’s name.  Deleting the speaker is done by clicking the X button. The speaker’s assignment to the segment is done from the drop down list in transcription panel that is linked to the segment. 
+## 5. Assign Speaker Information
+From the speakers panel you can add a speaker by clicking the plus button. Changing the speaker’s name is done by clicking on the pen icon next to the speaker’s name.  Deleting the speaker is done by clicking the X button. The speaker’s assignment to the segment is done from the drop down list in transcription panel that is linked to the segment. 
  
  <img src="../master/images/edit-speaker's-name.png" width="1200px">
  [Figure 3]. Edit speaker’s name
 
- ## 6. Transcription
+## 6. Transcription
 The basic transcription process involves typing the words that correspond to an existing segment. Recall that the transcript and waveform display are linked in that you can click on a segment in the waveform and wTrans will find that segment in the transcript.
  
  **6.1** Language Input Functions By design, wTrans supports only English.
@@ -52,6 +52,9 @@ The basic transcription process involves typing the words that correspond to an 
 - Shift+h move to next segment.
 - Shift+b move to previous segment. 
 
+
+## 7. Export file 
+You can export your transcription int CSV file easily by clicking Export as CSV button on the upper right corner of the page. 
 
 ## HTML
 **Library used** 
@@ -125,6 +128,7 @@ Fires when the user clicks on the bin icon to delete the speaker.
 
 ```$('#export').click(function (){})```
 Fires when the user clicks Export as CSV to download transcription table. 
+
 ## Functions
 
 ```displayRegionInfo(region)```
