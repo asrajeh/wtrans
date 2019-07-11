@@ -34,6 +34,7 @@ The first stage of transcription is segmentation, which refers to the process of
 From the speakers panel you can add a speaker by clicking the plus button. Changing the speaker’s name is done by clicking on the pen icon next to the speaker’s name.  Deleting the speaker is done by clicking the X button. The speaker’s assignment to the segment is done from the drop down list in transcription panel that is linked to the segment. 
  
  <img src="../master/images/edit-speaker's-name.png" width="1200px">
+ 
  [Figure 3]. Edit speaker’s name
 
 ## 6. Transcription
