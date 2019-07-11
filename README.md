@@ -60,6 +60,10 @@ You can export your transcription int CSV file easily by clicking Export as CSV 
 
 <img src="../master/images/exportCSV.png" width="350px">
 
+The transcript is exported in the following format 
+<img src="../master/images/format.png" width="350px">
+
+
 ## HTML
 **Library used** 
 **jQuery** 
