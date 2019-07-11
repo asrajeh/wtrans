@@ -56,7 +56,7 @@ The basic transcription process involves typing the words that correspond to an 
 
 ## 8. Export file 
 You can export your transcription int CSV file easily by clicking Export as CSV button on the upper right corner of the page. 
-<img src="../master/images/exportCSV.png" width="800px">
+<img src="../master/images/exportCSV.png" width="200px">
 
 ## HTML
 **Library used** 
