@@ -12,7 +12,7 @@ This region includes the waveform display and audio control buttons (left to rig
 
 When you put your mouse on the region there is tooltip indicates the start and end time by seconds.
 You can adjust the size by moving the start or end edges of the segment and also you can change the position of the segment by dragging it.
-<img src="../master/images/help-alert.png" width="1200px">
+<img src="../master/images/help-alert.png" width="500px">
 
 
 **(2) The Transcript Panel**  
@@ -33,7 +33,7 @@ The first stage of transcription is segmentation, which refers to the process of
 ## 5. Assign Speaker Information
 From the speakers panel you can add a speaker by clicking the plus button. Changing the speaker’s name is done by clicking on the pen icon next to the speaker’s name.  Deleting the speaker is done by clicking the X button. The speaker’s assignment to the segment is done from the drop down list in transcription panel that is linked to the segment. 
  
- <img src="../master/images/edit-speaker's-name.png" width="1200px">
+ <img src="../master/images/edit-speaker's-name.png" width="500px">
  
  [Figure 3]. Edit speaker’s name
 
