@@ -176,7 +176,10 @@ https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/xtrans-manual-v3.0.pdf
 
 
 ## Guiding tips
-Make sure you install all the files to get all the functions working, If you want to use the "find silences function" you must have flask uploaded on your server. 
+Make sure you install all the files to get all the functions working, If you want to use the "find silences function" you must have flask uploaded on your server and run python file first. 
+You can run the Python file using the terminal or Spyder like this: 
+
+
 
 ## Developers tips
 Finding siliences script is written in Python, we used Flask module for connecting javaScript and Python codes, you will find this part in JavaScript in function ```document.getElementById('silence').onclick ```  and in Python in this part: 
@@ -186,4 +189,4 @@ Finding siliences script is written in Python, we used Flask module for connecti
 
 
 
-
+The function ```document.getElementById('silence').onclick ``` is a comment now, If you want to use it make sure you have Flask on your server and run the python file first.
