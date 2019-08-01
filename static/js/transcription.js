@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	// Event Listener: Find silence end and start time
-	$('#silence').onclick = function () {
+	$('#silence').click(function () {
 		// Uncomment this to work with the python file script_root.py
 		/*
 		var silences = [] ; 
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		
 		return false;*/
 
-	}
+	});
 	
 	// Function: Retrieve and display region's attributes (speaker,color and data)
 	function displayRegionInfo(region) {
