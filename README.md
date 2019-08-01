@@ -141,12 +141,12 @@ Fires when the user clicks on the bin icon to delete the speaker.
 ```$('#export').click(function (){})```
 Fires when the user clicks Export as CSV to download transcription table. 
 
-```$('#silence').click(function () {})```
-Fires when user clicks on find silences button, it finds silence end and start time.
-- incompleted.
-
 ```$("#wavUpload").change(function () {})```
 Fires when user choose an audio file to be uploaded.
+
+- incompleted.
+```$('#silence').click(function () {})```
+Fires when user clicks on find silences button, it finds silence end and start time.
 
 ## Functions
 
