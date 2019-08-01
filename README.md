@@ -61,11 +61,14 @@ You can export your transcription int CSV file easily by clicking Export as CSV 
 
 
 <img src="../master/images/exportCSV.png" width="350px">
+[Figure 4]. Export to CSV
+
 
 The transcript is exported in the following format 
 
 
 <img src="../master/images/format.png" width="400px">
+[Figure 5]. File format.
 
 
 ## HTML
@@ -178,17 +181,19 @@ https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/xtrans-manual-v3.0.pdf
 
 ## Guiding tips
 Make sure you install all the files to get all the functions working, If you want to use the "find silences function" you must have flask uploaded on your server and run python file first. 
-You can run the Python file using the terminal or Spyder like this: 
+You can run the Python file using the terminal or Spyder like [Figure 6].
 
 <img src="../master/images/running-python-using-terminal.png" width="500px">
+[Figure 6]. Running on terminal.
 
 Copy the http link and paste in on any browser, but first make sure you uncomment the  ```document.getElementById('silence').onclick ``` function 
 
 ## Developers tips
-Finding silences script is written in Python, we used Flask module for connecting javaScript and Python codes, you will find this part in JavaScript in function ```document.getElementById('silence').onclick ```  and in Python in this part: 
+Finding silences script is written in Python, we used Flask module for connecting javaScript and Python codes, you will find this part in JavaScript in function ```document.getElementById('silence').onclick ```  and in Python [Figure 7].
 
 
 <img src="../master/images/flask-python.png" width="500px">
+[Figure 7]. Flask part in python.
 
 
 
