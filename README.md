@@ -181,9 +181,10 @@ You can run the Python file using the terminal or Spyder like this:
 
 <img src="../master/images/running-python-using-terminal.png" width="500px">
 
+but first make sure you uncomment the  ```document.getElementById('silence').onclick ``` function 
 
 ## Developers tips
-Finding siliences script is written in Python, we used Flask module for connecting javaScript and Python codes, you will find this part in JavaScript in function ```document.getElementById('silence').onclick ```  and in Python in this part: 
+Finding silences script is written in Python, we used Flask module for connecting javaScript and Python codes, you will find this part in JavaScript in function ```document.getElementById('silence').onclick ```  and in Python in this part: 
 
 
 <img src="../master/images/Flask part.png" width="500px">
