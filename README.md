@@ -190,7 +190,10 @@ https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/xtrans-manual-v3.0.pdf
 ## Guiding tips
 Make sure you install all the files to get all the functions working, If you want to use the "find silences function" you must have flask uploaded on your server and run python file first. 
 You can run the Python file using the terminal or Spyder like this: 
-
+On the terminal:
+``` $ export flask_app = script_root.py
+    $ flask run ```
+    
 <img src="../master/images/running-python-using-terminal.png" width="500px">
 
 Copy the http link and paste in on any browser, but first make sure you uncomment the  ```document.getElementById('silence').onclick ``` function 
