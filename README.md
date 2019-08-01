@@ -173,3 +173,11 @@ https://fontawesome.com/
 
 **xTrans Transcription tool user manual**
 https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/xtrans-manual-v3.0.pdf
+
+
+## Guiding tips
+Make sure you install all the files to get all the functions working, If you want to use the "find silences function" you must have flask uploaded on your server. 
+
+## Developers tips
+
+
