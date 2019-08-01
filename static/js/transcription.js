@@ -397,6 +397,33 @@ document.addEventListener('DOMContentLoaded', function () {
 		readURL(this);
 	});
 
+
+	// Event Listener: Find silence end and start time
+	$('#silence').onclick = function () {
+		// Uncomment this to work with the python file script_root.py
+		/*
+		var silences = [] ; 
+			$.getJSON(SCRIPTROOT + '/_find_silences', {
+			path: fileName
+		
+		}, function (data) {
+				
+		   silences  = data.result;// silences list, silence starts at i and ends at i+1  
+			alert(data.result);
+				
+			console.log(silences);
+				
+				for (var i = 0 ; i<silences.length;i++){
+
+					break;
+
+				}
+		});
+		
+		return false;*/
+
+	}
+	
 	// Function: Retrieve and display region's attributes (speaker,color and data)
 	function displayRegionInfo(region) {
 
@@ -611,13 +638,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-		/*
-		Uncomment this to communivate with flask python file "script_root.py" to import silence seconds ranges
-		$.getJSON(SCRIPTROOT + '/_find_silences', {
-        path: fileName
-      }, function(data) {
-        alert(data.result);
-      });*/
 		location.reload();
 	}
 
