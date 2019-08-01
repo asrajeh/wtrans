@@ -23,7 +23,7 @@ This region shows two columns. The first one is the transcribed text, the second
 This region displays the speakers list and a plus button to add more speakers and pen icon to change the speaker’s name.
 
 ## 3. Getting Started
-**3.1** Audio File is already uploaded in the code (for future work it’s better if we can upload it while using the app).
+**3.1** Audio File is already uploaded for trying and testing the app, the click on "Upload an audio" on the upper right corner to upload your audio file and start transcription. Your audio file extension must be .wav.
 
 **3.2** Open Transcript File (Future work).
 
