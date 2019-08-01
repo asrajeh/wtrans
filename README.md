@@ -12,6 +12,7 @@ This region includes the waveform display and audio control buttons (left to rig
 
 When you put your mouse on the region there is tooltip indicates the start and end time by seconds.
 You can adjust the size by moving the start or end edges of the segment and also you can change the position of the segment by dragging it.
+
 <img src="../master/images/help-alert.png" width="500px">
 
 
