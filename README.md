@@ -187,7 +187,7 @@ Copy the http link and paste in on any browser, but first make sure you uncommen
 Finding silences script is written in Python, we used Flask module for connecting javaScript and Python codes, you will find this part in JavaScript in function ```document.getElementById('silence').onclick ```  and in Python in this part: 
 
 
-<img src="../master/images/Flask part.png" width="500px">
+<img src="../master/images/flask-part.png" width="500px">
 
 
 
